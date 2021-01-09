@@ -21,6 +21,23 @@ legend("center",ncol=3,
        legend=c(atable))
 ```
 
+## a plot with only text
+
+Method 1
+```
+plot.new()
+legend("center",legend="Yes",lty=NULL,pch=NULL,ncol=1,
+       xjust=0.5,
+       yjust=0.5,
+       x.intersp=-0.3)
+```
+
+Method 2
+```
+plot(c(-2,2),c(-1,1),type='n',axes=FALSE,ann=FALSE)
+text(0,0,"Yes")
+```
+
 ## space out overlapping points
 
 ```
@@ -55,4 +72,8 @@ plot(c(-2,2),c(-1,1),type='n',axes=FALSE,ann=FALSE)
 ```
 barplot(atable,xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",space=0)
 ```
+
+## add column/row titles
+
+https://github.com/youyugithub/imitate_lattice_xyplot_using_base_plot_in_R
 
