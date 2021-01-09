@@ -81,7 +81,7 @@ https://github.com/youyugithub/imitate_lattice_xyplot_using_base_plot_in_R
 
 ```
 visualize_text<-function(mytext,mysize,myscale=0.95){
-  plot(c(-50,50),c(0,100),type="n")
+  plot(c(-50,50),c(0,100),type="n",axes=FALSE,ann=FALSE)
   mystrheight<-rep(NA,length(mytext))
   for(ii in 1:length(mytext)){
     if(mysize[ii]>0)
