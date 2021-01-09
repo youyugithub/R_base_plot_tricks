@@ -77,3 +77,23 @@ barplot(atable,xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",space=0)
 
 https://github.com/youyugithub/imitate_lattice_xyplot_using_base_plot_in_R
 
+## Visualize text categories
+
+```
+visualize_text<-function(mytext,mysize,myscale=0.95){
+  plot(c(-50,50),c(0,100),type="n")
+  mystrheight<-rep(NA,length(mytext))
+  for(ii in 1:length(mytext)){
+    if(mysize[ii]>0)
+      mystrheight[ii]<-strheight(mytext[ii],cex=100*mysize[ii]/sum(mysize))
+  }
+  mycex<-100*myscale*mysize/sum(mysize)*100/sum(mystrheight,na.rm=T)
+  mybottom<-100-100*cumsum(mysize)/sum(mysize)
+  mytop<-c(100,mybottom[1:(length(mybottom)-1)])
+  mycenter<-(mybottom+mytop)/2
+  for(ii in 1:length(mytext)){
+    if(mysize[ii]>0)
+      text(0,mycenter[ii],labels=mytext[ii],cex=mycex[ii])
+  }
+}
+```
