@@ -97,3 +97,37 @@ visualize_text<-function(mytext,mysize,myscale=0.95){
   }
 }
 ```
+# Change panels
+
+```
+# https://stackoverflow.com/questions/17410951/change-plot-panel-in-multipanel-plot-in-r
+
+pars <- c('plt','usr')
+
+par(mfrow=c(2,2))
+
+plot(anscombe$x1, anscombe$y1, type='n')
+par1 <- c(list(mfg=c(1,1,2,2)), par(pars))
+plot(anscombe$x2, anscombe$y2, type='n')
+par2 <- c(list(mfg=c(1,2,2,2)), par(pars))
+plot(anscombe$x3, anscombe$y3, type='n')
+par3 <- c(list(mfg=c(2,1,2,2)), par(pars))
+plot(anscombe$x4, anscombe$y4, type='n')
+par4 <- c(list(mfg=c(2,2,2,2)), par(pars))
+
+for( i in 1:11 ) {
+  par(par1)
+  points(anscombe$x1[i], anscombe$y1[i])
+  Sys.sleep(0.5)
+  par(par2)
+  points(anscombe$x2[i], anscombe$y2[i])
+  Sys.sleep(0.5)
+  par(par3)
+  points(anscombe$x3[i], anscombe$y3[i])
+  Sys.sleep(0.5)
+  par(par4)
+  points(anscombe$x4[i], anscombe$y4[i])
+  Sys.sleep(0.5)
+}
+
+```
