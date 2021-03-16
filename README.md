@@ -130,4 +130,16 @@ for( i in 1:11 ) {
   Sys.sleep(0.5)
 }
 
+
+
+par(mfrow=c(2,2))
+plot(rnorm(10), rnorm(10))
+tmp <- par('usr')
+hist(rgamma(1000,3)) # changes coordinate system
+par(mfg=c(1,1)) # go back to first plot
+points(0,0, col='red')  # wrong place, based on hist coordinate system
+par(usr=tmp)  # reset coordinates to correct values
+points(0,0, col='blue')  # now it is in the right place
+
 ```
+
