@@ -143,3 +143,14 @@ points(0,0, col='blue')  # now it is in the right place
 
 ```
 
+```
+color_levels<-function(x){
+  if(is.null(levels(x)))return(NULL)
+  x_levels<-levels(x)
+  n_levels<-length(x_levels)
+  x_hues<-seq(15,375,length=n_levels+1)
+  x_colors<-hcl(h=x_hues,l=65,c=100)[1:n_levels]
+  names(x_colors)<-x_levels
+  x_colors
+}
+```
