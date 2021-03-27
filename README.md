@@ -163,3 +163,8 @@ bty="n"
 ## gray border
 border="gray"
 ```
+
+# axis tricks
+```
+axis(...,cex.axis=0.75,padj=-2)
+```
