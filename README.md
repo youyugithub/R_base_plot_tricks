@@ -154,3 +154,12 @@ color_levels<-function(x){
   x_colors
 }
 ```
+
+# Legend tricks
+
+```
+## no border
+bty="n"
+## gray border
+border="gray"
+```
