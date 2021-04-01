@@ -168,3 +168,7 @@ border="gray"
 ```
 axis(...,cex.axis=0.75,padj=-2)
 ```
+
+# axis rotation/rotate
+
+The las parameter takes integers in the set {0,1,2,3}. The two we care about here are 0, which specifies axis labels should always be parallel to the axis (the default argument), and 2, which causes labels to always be drawn perpendicular to the axis. To make the y-axis labels easier to read, we want them to be perpendicular to the axis, so we will pass las = 2 to the axis function. (Ref: https://www.tenderisthebyte.com/blog/2019/04/25/rotating-axis-labels-in-r/).
