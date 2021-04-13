@@ -172,3 +172,61 @@ axis(...,cex.axis=0.75,padj=-2)
 # axis rotation/rotate
 
 The las parameter takes integers in the set {0,1,2,3}. The two we care about here are 0, which specifies axis labels should always be parallel to the axis (the default argument), and 2, which causes labels to always be drawn perpendicular to the axis. To make the y-axis labels easier to read, we want them to be perpendicular to the axis, so we will pass las = 2 to the axis function. (Ref: https://www.tenderisthebyte.com/blog/2019/04/25/rotating-axis-labels-in-r/).
+
+#
+
+pdf("output/1ab_tree_clusters_characteristics.pdf",width=7,height=6)
+
+layout_matrix<-matrix(1:(nclus*6),nclus,6,byrow=TRUE)
+layout(layout_matrix)
+
+par(#mfrow=c(nclus,7),
+  mar=c(0.2,0.25,0.2,0.25),
+  oma=c(7,2,2,2),
+  mgp=c(2,1,0),
+  tcl=-0.25)
+
+for(idx_rank in 1:nclus){
+  df_subset<-df_merge%>%filter(rank==idx_rank)
+  n_subset<-nrow(df_subset)
+  
+  plot(c(-2,2),c(-1,1),type='n',axes=FALSE,ann=FALSE)
+  legend("center",legend=c(paste("Cluster",idx_rank),paste("n =",n_subset)),bty="n",ncol=1,cex=0.8)
+  
+  hist(df_subset$Age,main="",xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",
+       breaks=seq(range_age[1]-0.5,range_age[2]+0.5,length.out=11))
+  if(idx_rank==1)add_col_title(mytitle="Age")
+  if(idx_rank==nclus)axis(1,cex.axis=0.6,tck=-0.02,padj=-2)
+  
+  barplot(table(df_subset$AAB)/n_subset,xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",space=0)
+  if(idx_rank==1)add_col_title(mytitle="AB")
+  if(idx_rank==nclus)
+    axis(side=1,at=seq_along(table(df_subset$AAB))-0.5,
+         tick=FALSE,labels=levels(df_subset$AAB),las=3,
+         cex.axis=0.8)
+  
+  barplot(table(df_subset$Sibling)/n_subset,xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",space=0)
+  if(idx_rank==1)add_col_title(mytitle="Sibling")
+  if(idx_rank==nclus)
+    axis(side=1,at=seq_along(table(df_subset$Sibling))-0.5,
+         tick=FALSE,labels=levels(df_subset$Sibling),las=3,
+         cex.axis=0.8)
+  
+  barplot(table(df_subset$GRS2_grp)/n_subset,xlab=NULL,ylab=NULL,xaxt="n",yaxt="n",space=0)
+  if(idx_rank==1)add_col_title(mytitle="GRS")
+  if(idx_rank==nclus)axis(side=1,at=seq_along(table(df_subset$GRS2_grp))-0.5,
+                          tick=FALSE,labels=levels(df_subset$GRS2_grp),las=3,
+                          cex.axis=0.8)
+  
+  afit<-survfit(Surv(Survival_Time,T1D_Indicator==1)~1,data=df_subset)
+  
+  plot(afit,xlab="",ylab="",xaxt="n",yaxt="n")
+  if(idx_rank==1)add_col_title(mytitle="T1D")
+  if(idx_rank==nclus)
+    axis(side=1,at=seq_along(table(df_subset$T1D_Indicator))-0.5,
+         tick=FALSE,labels=levels(df_subset$T1D_Indicator),las=3,
+         cex.axis=0.8)
+  
+}
+dev.off()
+
