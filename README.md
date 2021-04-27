@@ -166,7 +166,7 @@ border="gray"
 
 # axis tricks
 ```
-axis(...,cex.axis=0.75,padj=-2)
+axis(...,cex.axis=0.75,padj=-2,tck=-0.05)
 ```
 
 # axis rotation/rotate
