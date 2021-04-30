@@ -257,3 +257,10 @@ text(0,0,"text",srt=90,pos=2)
 text(0,0,"text",srt=180,pos=2)
 text(0,0,"text",srt=270,pos=2)
 ```
+
+## Adjust axis labels position
+
+```
+title(xlab="Years Since Treatment",line=2,cex.lab=0.75)
+title(ylab="Subjects",line=1,cex.lab=0.75)
+```
