@@ -264,3 +264,13 @@ text(0,0,"text",srt=270,pos=2)
 title(xlab="Years Since Treatment",line=2,cex.lab=0.75)
 title(ylab="Subjects",line=1,cex.lab=0.75)
 ```
+
+## save as jpg/jpeg
+https://stackoverflow.com/questions/51192059/saving-high-resolution-plot-in-png
+As you can read in ?jpeg you can use a filename with a "C integer format" and jpeg will create a new file for each plot, e.g.:
+```
+jpeg(filename="Rplot%03d.jpeg")
+plot(1:10)  # will become Rplot001.jpeg
+plot(11:20) # will become Rplot002.jpeg
+dev.off()
+```
