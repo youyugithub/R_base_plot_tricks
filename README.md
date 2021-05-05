@@ -274,3 +274,17 @@ plot(1:10)  # will become Rplot001.jpeg
 plot(11:20) # will become Rplot002.jpeg
 dev.off()
 ```
+
+```
+pryr_timecheck %<a-% {
+    ...
+}
+
+pdf("timecheck.pdf",width=8,height=11)
+pryr_timecheck
+dev.off()
+
+jpeg("timecheck%03d.pdf",width=120*8,height=120*11,quality=100,res=75*2)
+pryr_timecheck
+dev.off()
+```
