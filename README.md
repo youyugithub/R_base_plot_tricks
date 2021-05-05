@@ -276,6 +276,7 @@ dev.off()
 ```
 
 ```
+library(pryr)
 pryr_timecheck %<a-% {
     ...
 }
