@@ -289,3 +289,9 @@ jpeg("timecheck%03d.pdf",width=120*8,height=120*11,quality=100,res=75*2)
 pryr_timecheck
 dev.off()
 ```
+
+## change color gradually, gradient color,
+
+```
+col_sd<-circlize::colorRamp2(c(-2,0,2),c("blue","purple","red"))
+```
